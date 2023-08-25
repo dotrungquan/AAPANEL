@@ -6,8 +6,8 @@ read -p "Nhập tên miền cần cài ImunifyAV: " domain
 # Loại bỏ thuộc tính chống sửa đổi
 chattr -i /www/wwwroot/$domain/.user.ini
 
-# Xóa toàn bộ nội dung trong thư mục
-rm -rf /www/wwwroot/$domain/*
+# Tìm và xóa các tệp cụ thể trong thư mục
+find /www/wwwroot/$domain/ -maxdepth 1 -type f \( -name ".htaccess" -o -name ".user.ini" -o -name "404.html" -o -name "index.html" \) -exec rm -f {} \;
 
 # Tạo thư mục
 mkdir -p /etc/sysconfig/imunify360
